@@ -14,6 +14,11 @@ async def on_ready():
     print('>>Bot is online!<<')
 
 @bot.command()
+async def num(ctx,arg1):
+    for i in range(int(arg1)):
+        await ctx.send(i)
+
+@bot.command()
 async def Y0_time(ctx,*args):
     if len(args) == 0:
         COUNT = 1
@@ -25,8 +30,6 @@ async def Y0_time(ctx,*args):
         return
     else:
         COUNT = int(args[0])
-    
-    await ctx.send('計算中...')
 
     locationPoint = datetime.datetime(2019,11,3,1,00,00)
     now = datetime.datetime.now()
@@ -48,9 +51,10 @@ async def Y0_time(ctx,*args):
     for i in range(COUNT - 1):
         nexttime += delta
         timeList.append(nexttime)
-
-    await ctx.send('夜靈出現時間:')
+    timeStr = ''
+    timeStr += '夜靈出現時間:\n'
     for time in timeList:
-        await ctx.send(time)
+        timeStr += '{}-{}-{} {}:{}\n'.format(time.year,time.month,time.day,time.hour,time.minute)
 
+    await ctx.send(timeStr)
 bot.run(jdata['TOKEN'])
