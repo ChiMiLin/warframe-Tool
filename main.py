@@ -54,7 +54,7 @@ async def Y0_time(ctx,*args):
     timeStr = ''
     timeStr += '夜靈出現時間:\n'
     for time in timeList:
-        timeStr += '{}-{}-{} {}:{}\n'.format(time.year,time.month,time.day,time.hour,time.minute)
+        timeStr += '{:0>4d}-{:0>2d}-{:0>2d} {:0>2d}:{:0>2d}\n'.format(time.year,time.month,time.day,time.hour,time.minute)
 
     await ctx.send(timeStr)
 bot.run(jdata['TOKEN'])
