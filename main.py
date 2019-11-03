@@ -36,15 +36,15 @@ async def Y0_time(ctx,*args):
     count = 0
     #找到下一個夜靈出沒定位點
     for i in range(150):
-        delta = datetime.timedelta(seconds = i*60)
+        delta = datetime.timedelta(minutes = i)
         nexttime = now_noSec + delta
         if ((nexttime - locationPoint).seconds/60) % 150 == 0:
             await ctx.send(nexttime)
             count += 1
             break
     
+    delta = datetime.timedelta(minutes = 150)
     for i in range(COUNT - 1):
-        delta = datetime.timedelta(seconds = 60*150)
         nexttime += delta
         await ctx.send(nexttime)
 
