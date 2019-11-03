@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 import datetime
 
-with open('setting.json','r',encoding='utf8') as jfile:
+with open('../warframe-Tool-Token/setting.json','r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
 
 
