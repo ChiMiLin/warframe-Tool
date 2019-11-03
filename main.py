@@ -26,12 +26,13 @@ async def Y0_time(ctx,*args):
     else:
         COUNT = int(args[0])
     
-    await ctx.send('夜靈出現時間:')
+    await ctx.send('計算中...')
 
     locationPoint = datetime.datetime(2019,11,3,1,00,00)
     now = datetime.datetime.now()
     now_noSec = datetime.datetime(now.year,now.month,now.day,now.hour,now.minute)
 
+    timeList = []
     nexttime = now_noSec
     count = 0
     #找到下一個夜靈出沒定位點
@@ -39,13 +40,17 @@ async def Y0_time(ctx,*args):
         delta = datetime.timedelta(minutes = i)
         nexttime = now_noSec + delta
         if ((nexttime - locationPoint).seconds/60) % 150 == 0:
-            await ctx.send(nexttime)
+            timeList.append(nexttime)
             count += 1
             break
     
     delta = datetime.timedelta(minutes = 150)
     for i in range(COUNT - 1):
         nexttime += delta
-        await ctx.send(nexttime)
+        timeList.append(nexttime)
+
+    await ctx.send('夜靈出現時間:')
+    for time in timeList:
+        await ctx.send(time)
 
 bot.run(jdata['TOKEN'])
